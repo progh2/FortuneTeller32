@@ -95,6 +95,13 @@ namespace FortuneTeller32
             {
                 string filename = "history.csv";
                 File.AppendAllText(filename, history + Environment.NewLine);
+                
+                // Auto-update FormHistory if it's currently open
+                FormHistory historyForm = Application.OpenForms["FormHistory"] as FormHistory;
+                if (historyForm != null)
+                {
+                    historyForm.UpdateHistory();
+                }
             }
             catch (UnauthorizedAccessException ex)
             {
